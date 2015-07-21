@@ -18,7 +18,9 @@ It s pretty easy and soon it will have a make file.
 in  the while just compile it:
 
 g++ -o mixer.o cpp_mixer.cpp -std=c++11
+
 bash bblock_mixer.sh moby.txt 20 mobydick
+
 gnuplot -e 'plot "curve_mobydick.dat" u 1:2:3 w e'
 
 moby dick is a trial text. 
@@ -28,6 +30,7 @@ bash bbloc_mixer.sh --help give some info
 the blocks mixer program is written in C++
 the process is execute in bash trough many repetitions (Samples ~40).
 
-I presented this work as my bachelor thesis, and I was intereste in make it reusable, if you re interexted mail to me.
-Thank you
+I presented this work as my bachelor thesis, and I m happy in make it reusable, if you re interested mail to me.
+#Thank you
+
 Cocconat
