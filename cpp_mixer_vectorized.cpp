@@ -23,58 +23,58 @@ vector<int> basket;
 
 int main ( int argc,char * argv[]) {
 
+  //arguments checks
+  if (argc < 3) {cout << "WARNING!!  missing arguments:" <<endl
+		      << "- file to mix" << endl 
+		      << "- block size"<<endl;
+		      return (1);}
+  if (!atoi(argv[2])) {cout << "WARNING!! second argument must be an int" <<endl;
+		      return (1);}
+			  
 
   streampos size;
   char * read;
-  std::string newseq;
-  std::string memblock;
   int block= atoi(argv[2]);
-	
-  ifstream file (argv[1], ios::in|ios::binary|ios::ate);
-  //ofstream out ("heart_mother", ios::out|ios::binary);
   
+  ifstream file (argv[1]);
+  //ofstream out ("heart_mother", ios::out|ios::binary);
+  std::vector<char> data = std::vector<char>(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
   
   if (file.is_open())
   {
-	//input file acquisition
-	size = file.tellg();
+    //input file acquisition	
+    size = file.tellg();
     int n_block =(int) size/block;
-
     file.seekg (0, ios::beg);
-    read = new char [size];
-    file.read (read, size);
-
-    //shift the string randomly
+        //shift the string randomly and acquire it in string
     std::uniform_int_distribution<int> distribution(0,block);
-    memblock.insert(0,distribution(mt),'0');
-  
-    memblock.append(read);
-		
+
+    data.insert(data.begin(),distribution(mt),'0');
     
-    //mixing initialize
-	for (int i ; i<n_block ; i++){
+	
+	//mixing initialize
+	for (int i=0 ; i<n_block ; i++){
 		basket.push_back(i);
-		}
-		std::shuffle(basket.begin(), basket.end(), mt);
+	}
+	std::shuffle(basket.begin(), basket.end(), mt);
 
-
+//clog << "size"<<data.size() <<endl;
 	if (size > block){
-	//mixing
+        //mixing
 	for (int j=0; j<n_block; j++){
 		int pos= basket[j];		
-		newseq = memblock.substr (pos*block,block);
-		cout << newseq;
-
+//clog << j <<endl;;
+		std::for_each(data.data()+pos*block, data.data()+(pos+1)*block, [](char c) { std::cout << c; });
+		}	
 //  this keep string in memory, pretty useless for this scope.
 //		newseq.append(memblock.begin()+pos*block,memblock.begin()+(pos+1)*block);
 		 
-		 
-	}
+		
 
 //	out.close();
 	file.close();
-    free (read);
-    
+//    free(memblock);
+ 
 	}
 	else {clog << "block size bigger than file itself"; return 1;}
   }
