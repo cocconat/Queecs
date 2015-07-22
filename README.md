@@ -14,17 +14,12 @@ position.
 Queecs recreate a qualitative curve which express how long and how strong theese correlations are.
 
 #how to run Queecs
-It s pretty easy and soon it will have a make file.
-in  the while just compile it:
 
-g++ -o mixer.o cpp_mixer.cpp -std=c++11
+make
+./queecs file.whatever samples token
 
-bash queecs.sh moby.txt 20 mobydick
-
-gnuplot -e 'plot "curve_mobydick.dat" u 1:2:3 w e'
-
-moby dick is a trial text. 
-bash bbloc_mixer.sh --help give some info
+-samples is how many statistichal sample you want to run
+-token is a identifier for the data file you re creating
 
 #technical dettails
 the blocks mixer program is written in C++
