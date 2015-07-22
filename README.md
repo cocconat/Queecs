@@ -16,6 +16,7 @@ Queecs recreate a qualitative curve which express how long and how strong theese
 #how to run Queecs
 
 make
+
 ./queecs file.whatever samples token
 
 -samples is how many statistichal sample you want to run
