@@ -19,7 +19,7 @@ in  the while just compile it:
 
 g++ -o mixer.o cpp_mixer.cpp -std=c++11
 
-bash bblock_mixer.sh moby.txt 20 mobydick
+bash queecs.sh moby.txt 20 mobydick
 
 gnuplot -e 'plot "curve_mobydick.dat" u 1:2:3 w e'
 
