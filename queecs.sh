@@ -18,7 +18,7 @@ do
 	count=0
 	for i in $(seq 1 $2)
 	do
-	        ./mixer.o $1 $x > temp/bloc_${3}.tmp
+	        ./mixer $1 $x > temp/bloc_${3}.tmp
 		bzip2 -cq --best temp/bloc_${3}.tmp > temp/zipped_${3}.tmp.gz
 		echo $(wc -c temp/zipped_${3}.tmp.gz)  >> temp/samples_${3}.tmp
 		rm temp/zipped_${3}.tmp.gz 

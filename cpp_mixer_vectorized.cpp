@@ -17,8 +17,8 @@ std::uniform_real_distribution<double> distribution(0,1);
 std::normal_distribution<double> normal(0,1.0);
  
 using namespace std;
-//basket for random number
 
+//basket for random number
 vector<int> basket;
 
 int main ( int argc,char * argv[]) {
@@ -35,9 +35,7 @@ int main ( int argc,char * argv[]) {
   streampos size;
   char * read;
   int block= atoi(argv[2]);
-  
   ifstream file (argv[1]);
-  //ofstream out ("heart_mother", ios::out|ios::binary);
   std::vector<char> data = std::vector<char>(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
   
   if (file.is_open())
@@ -46,36 +44,27 @@ int main ( int argc,char * argv[]) {
     size = file.tellg();
     int n_block =(int) size/block;
     file.seekg (0, ios::beg);
-        //shift the string randomly and acquire it in string
+   
+    //shift the string randomly and acquire it in string
     std::uniform_int_distribution<int> distribution(0,block);
-
     data.insert(data.begin(),distribution(mt),'0');
     
 	
 	//mixing initialize
-	for (int i=0 ; i<n_block ; i++){
-		basket.push_back(i);
-	}
+	for (int i=0 ; i<n_block ; i++)
+	{basket.push_back(i);}
 	std::shuffle(basket.begin(), basket.end(), mt);
-
-//clog << "size"<<data.size() <<endl;
+	
+	//mixing
 	if (size > block){
-        //mixing
 	for (int j=0; j<n_block; j++){
-		int pos= basket[j];		
-//clog << j <<endl;;
-		std::for_each(data.data()+pos*block, data.data()+(pos+1)*block, [](char c) { std::cout << c; });
+	  int pos= basket[j];		
+	  std::for_each(data.data()+pos*block, data.data()+(pos+1)*block, [](char c) { std::cout << c; });
 		}	
-//  this keep string in memory, pretty useless for this scope.
-//		newseq.append(memblock.begin()+pos*block,memblock.begin()+(pos+1)*block);
-		 
-		
-
-//	out.close();
+	
 	file.close();
-//    free(memblock);
- 
-	}
+ 	}
+  //errors
 	else {clog << "block size bigger than file itself"; return 1;}
   }
   else {clog << "Unable to open file"; return 1;}
