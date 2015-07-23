@@ -28,4 +28,5 @@ do
 	awk -v z=$(wc -c $1 |awk '{print $1}') ' {u+=$1; s+= $1*$1; c++} END { print '$x' "  " u/c/z "  " sqrt((s/c-(u/c)**2)/c)/z "  "}' temp/samples_${3}.tmp>> results/curve_$3.dat  
 
 echo "zipping" $1 "over " $x "blocks" 
+rm -r temp
 done

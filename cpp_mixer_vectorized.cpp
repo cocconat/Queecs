@@ -35,6 +35,7 @@ int main ( int argc,char * argv[]) {
   streampos size;
   char * read;
   int block= atoi(argv[2]);
+  std::string newseq;
   ifstream file (argv[1]);
   std::vector<char> data = std::vector<char>(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
   
@@ -58,8 +59,10 @@ int main ( int argc,char * argv[]) {
 	//mixing
 	if (size > block){
 	for (int j=0; j<n_block; j++){
-	  int pos= basket[j];		
-	  std::for_each(data.data()+pos*block, data.data()+(pos+1)*block, [](char c) { std::cout << c; });
+	int pos= basket[j];		
+	std::for_each(data.data()+pos*block, data.data()+(pos+1)*block, [&newseq](char c) { newseq.append(1,c); });
+	cout << newseq;
+	newseq="";  
 		}	
 	
 	file.close();
