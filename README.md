@@ -15,12 +15,12 @@ Queecs recreate a qualitative curve which express how long and how strong theese
 
 #how to run Queecs
 
-'''
+```
 
 make
 ./queecs file.xxx samples token
 
-'''
+```
 
 -samples is how many statistical samples you want to run
 -token is a identifier for the data file you re creating
