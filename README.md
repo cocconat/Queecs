@@ -14,19 +14,22 @@ position.
 Queecs recreate a qualitative curve which express how long and how strong theese correlations are.
 
 #how to run Queecs
-
+'''
 make
+./queecs file.xxx samples token
+'''
 
-./queecs file.whatever samples token
-
--samples is how many statistichal sample you want to run
+-samples is how many statistical samples you want to run
 -token is a identifier for the data file you re creating
 
-#technical dettails
+Your results are stored in *results* folder as curve_*token*.dat
+
+#details
 the blocks mixer program is written in C++
-the process is execute in bash trough many repetitions (Samples ~40).
+the process is execute in bash with a foor loop over a list of block dimensions.
 
 I presented this work as my bachelor thesis, and I m happy in make it reusable, if you re interested mail to me.
+
 #Thank you
 
 Cocconat
